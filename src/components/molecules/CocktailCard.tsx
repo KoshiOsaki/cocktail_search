@@ -1,4 +1,8 @@
+import Link from "next/link";
+
 interface Props {
+  id: string;
+  image: string;
   name: string;
   way: string;
   glass: string;
@@ -11,9 +15,9 @@ interface Props {
 
 export const CocktailCard = ({ ...props }: Props) => {
   return (
-    <div className="rounded-lg shadow-xl border bg-slate-50 w-[95%] mb-7">
-      <img src="/shikaruneko.png" alt="" className="w-[140px] h-auto inline" />
-      <p className="font-bold text-lg">{props.name}</p>
+    <div className="rounded-lg shadow-xl border bg-slate-50 w-[95%] mb-7 overflow-auto h-[400px] sm:h-[200px]">
+      <img src={props.image} alt="" className="w-[140px] h-auto mx-auto sm:hidden" />
+      <p className="font-bold text-lg text-center mb-2">{props.name}</p>
       <dl className="flex flex-wrap">
         <dt className="w-[30%]">技法</dt>
         <dd className="w-[70%]">{props.way}</dd>
@@ -30,7 +34,14 @@ export const CocktailCard = ({ ...props }: Props) => {
         <br />
         <br />
         <dt className="w-[30%] text-sm">作成者</dt>
-        <dd className="w-[70%] text-sm">{props.author}</dd>
+        <dd className="w-[30%] text-sm">{props.author}</dd>
+        <dd className="w-[40%]">
+          <button className="bg-gray-200 hover:bg-gray-400 p-1  border-gray-500 border">
+            <Link href={`/cocktail/edit?id=${props.id}`}>
+              <a>編集</a>
+            </Link>
+          </button>
+        </dd>
       </dl>
     </div>
   );
