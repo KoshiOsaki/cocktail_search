@@ -29,19 +29,20 @@ const Cocktail: NextPage = () => {
         snapshot.forEach((document) => {
           const doc = document.data();
           mydata.push(
-            <CocktailCard
-              key={doc.id}
-              id={doc.id}
-              image={doc.image || "/noimage.png"}
-              name={doc.name}
-              way={doc.way}
-              glass={doc.glass}
-              material={doc.material}
-              garnish={doc.garnish}
-              option={doc.option}
-              note=""
-              author="大崎"
-            />
+            <div key={document.id}>
+              <CocktailCard
+                id={document.id}
+                image={doc.image || "/noimage.png"}
+                name={doc.name}
+                way={doc.way}
+                glass={doc.glass}
+                material={doc.material}
+                garnish={doc.garnish}
+                option={doc.option}
+                note=""
+                author="大崎"
+              />
+            </div>
           );
         });
         setData(mydata);
@@ -55,19 +56,20 @@ const Cocktail: NextPage = () => {
         snapshot.forEach((document) => {
           const doc = document.data();
           mydata.push(
-            <CocktailCard
-              key={doc.id}
-              id={doc.id}
-              image={doc.image || "/noimage.png"}
-              name={doc.name}
-              way={doc.way}
-              glass={doc.glass}
-              material={doc.material}
-              garnish={doc.garnish}
-              option={doc.option}
-              note=""
-              author="大崎"
-            />
+            <div key={document.id}>
+              <CocktailCard
+                id={document.id}
+                image={doc.image || "/noimage.png"}
+                name={doc.name}
+                way={doc.way}
+                glass={doc.glass}
+                material={doc.material}
+                garnish={doc.garnish}
+                option={doc.option}
+                note=""
+                author="大崎"
+              />
+            </div>
           );
         });
         setData(mydata);
@@ -85,19 +87,20 @@ const Cocktail: NextPage = () => {
           var material = material.replace(/,/g, " ");
 
           mydata.push(
-            <CocktailCard
-              key={doc.id}
-              id={document.id}
-              image={doc.image || "/noimage.png"}
-              name={doc.name}
-              way={doc.way}
-              glass={doc.glass}
-              material={material}
-              garnish={doc.garnish}
-              option={doc.option}
-              note=""
-              author="大崎"
-            />
+            <div key={document.id}>
+              <CocktailCard
+                id={document.id}
+                image={doc.image || "/noimage.png"}
+                name={doc.name}
+                way={doc.way}
+                glass={doc.glass}
+                material={material}
+                garnish={doc.garnish}
+                option={doc.option}
+                note=""
+                author="大崎"
+              />
+            </div>
           );
         });
         setData(mydata);

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface Props {
-  key: string;
+  
   id: string;
   image: string;
   name: string;

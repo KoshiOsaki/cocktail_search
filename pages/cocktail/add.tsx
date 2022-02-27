@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import { Layout } from "../../src/components/templates/Layout";
 import { Meta } from "../../src/components/templates/Meta";
 import { Container } from "../../src/components/atoms/Container";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import firebase from "firebase";
 import { useRouter } from "next/router";
 import "../api/fire";
@@ -42,7 +41,7 @@ const CocktailAdd: NextPage = () => {
   const onChangeOption = (e: any) => {
     setOption(e.target.value);
   };
-  const onClickAdd = (e: any) => {
+  const onClickAddMa = (e: any) => {
     if (mate === "" || qu === "") return;
     const newMaterials = [...material, mate, qu];
     setMate("");
@@ -50,14 +49,14 @@ const CocktailAdd: NextPage = () => {
     setMaterial(newMaterials);
   };
 
-  const doAction = (e: any) => {
+  const onClickAdd = (e: any) => {
     const ob = {
       name: name,
       way: way,
       glass: glass,
       material: material,
-      garnish: garnish||"なし",
-      option: option||"なし",
+      garnish: garnish || "なし",
+      option: option || "なし",
     };
     db.collection("mydata")
       .add(ob)
@@ -165,13 +164,13 @@ const CocktailAdd: NextPage = () => {
                 />
               </div>
               <button
-                onClick={onClickAdd}
+                onClick={onClickAddMa}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
               >
                 追加
               </button>
-              {material.map((m) => (
-                <li>{m}</li>
+              {material.map((m, index) => (
+                <li key={index}>{m}</li>
               ))}
             </div>
             <div className="mb-4">
@@ -182,6 +181,7 @@ const CocktailAdd: NextPage = () => {
                 className="shadow appearance-none border rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
+                placeholder="なし"
                 onChange={onChangeGarnish}
                 value={garnish}
               />
@@ -194,13 +194,14 @@ const CocktailAdd: NextPage = () => {
                 className="shadow appearance-none border rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
+                placeholder="なし"
                 onChange={onChangeOption}
                 value={option}
               />
             </div>
           </div>
           <button
-            onClick={doAction}
+            onClick={onClickAdd}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           >
             Add
