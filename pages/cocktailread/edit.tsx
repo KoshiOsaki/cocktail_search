@@ -1,16 +1,14 @@
 import { NextPage } from "next";
-
 import { useState, useEffect } from "react";
 import firebase from "firebase";
 import { useRouter } from "next/router";
 import "../api/fire";
-import { Layout } from "../../src/components/templates/Layout";
 import { Meta } from "../../src/components/templates/Meta";
 import { Container } from "../../src/components/atoms/Container";
+import { LayoutDummy } from "../../src/components/templates/LayoutDummy";
 
 const db = firebase.firestore();
 const CocktailEdit: NextPage = () => {
-  const [data, setData] = useState<any>({});
   const [name, setName] = useState();
   const [way, setWay] = useState("シェイク");
   const [glass, setGlass] = useState("カクテル");
@@ -48,13 +46,13 @@ const CocktailEdit: NextPage = () => {
             setName(doc.name);
             setWay(doc.way);
             setGlass(doc.glass);
-            setMaterial(doc.material)
+            setMaterial(doc.material);
             setGarnish(doc.garnish);
             setOption(doc.option);
           }
         });
     }
-  },[]);
+  }, []);
 
   const onClickDelete = () => {
     if (router.query.id != undefined) {
@@ -62,7 +60,7 @@ const CocktailEdit: NextPage = () => {
         .doc(router.query.id.toString())
         .delete()
         .then((ref) => {
-          router.push("/cocktail");
+          router.push("/cockcock");
         });
     }
   };
@@ -74,18 +72,18 @@ const CocktailEdit: NextPage = () => {
           name: name,
           way: way,
           glass: glass,
-          material:material,
+          material: material,
           garnish: garnish,
           option: option,
         })
         .then((ref) => {
-          router.push("/cocktail");
+          router.push("/cockcock");
         });
     }
   };
 
   return (
-    <Layout>
+    <LayoutDummy>
       <Meta />
       <Container>
         <div>
@@ -195,20 +193,22 @@ const CocktailEdit: NextPage = () => {
           <div>
             <button
               onClick={onClickUpdate}
-              className="bg-gray-200 hover:bg-gray-400 p-1  border-gray-500 border mr-3"
+              className="bg-gray-400  p-1  border-gray-500 border mr-3"
+              disabled
             >
               更新
             </button>
             <button
               onClick={onClickDelete}
-              className="bg-red-500 hover:bg-red-600 p-1  border-gray-500 border text-white"
+              className="bg-red-500  p-1  border-gray-500 border text-white"
+              disabled
             >
               削除
             </button>
           </div>
         </div>
       </Container>
-    </Layout>
+    </LayoutDummy>
   );
 };
 

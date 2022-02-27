@@ -12,6 +12,7 @@ interface Props {
   option: string;
   note: string;
   author: string;
+  able:boolean
 }
 
 export const CocktailCard = ({ ...props }: Props) => {
@@ -42,7 +43,7 @@ export const CocktailCard = ({ ...props }: Props) => {
         <dd className="w-[30%] text-sm">{props.author}</dd>
         <dd className="w-[40%]">
           <button className="bg-gray-200 hover:bg-gray-400 p-1  border-gray-500 border">
-            <Link href={`/cocktail/edit?id=${props.id}`}>
+            <Link href={props.able?`/cockcock/edit?id=${props.id}`:`/cocktailread/edit?id=${props.id}`}>
               <a>編集</a>
             </Link>
           </button>

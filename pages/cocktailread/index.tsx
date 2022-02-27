@@ -4,9 +4,9 @@ import firebase from "firebase";
 import "../api/fire";
 import Link from "next/link";
 import { CocktailCard } from "../../src/components/molecules/CocktailCard";
-import { Layout } from "../../src/components/templates/Layout";
 import { Meta } from "../../src/components/templates/Meta";
 import { Container } from "../../src/components/atoms/Container";
+import { LayoutDummy } from "../../src/components/templates/LayoutDummy";
 
 const db = firebase.firestore();
 
@@ -41,6 +41,7 @@ const Cocktail: NextPage = () => {
                 option={doc.option}
                 note=""
                 author="大崎"
+                able={false}
               />
             </div>
           );
@@ -68,6 +69,7 @@ const Cocktail: NextPage = () => {
                 option={doc.option}
                 note=""
                 author="大崎"
+                able={false}
               />
             </div>
           );
@@ -78,6 +80,7 @@ const Cocktail: NextPage = () => {
 
   useEffect(() => {
     db.collection("mydata")
+      .orderBy("name")
       .get()
       .then((snapshot) => {
         snapshot.forEach((document) => {
@@ -99,6 +102,7 @@ const Cocktail: NextPage = () => {
                 option={doc.option}
                 note=""
                 author="大崎"
+                able={false}
               />
             </div>
           );
@@ -108,7 +112,7 @@ const Cocktail: NextPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <LayoutDummy>
       <Meta />
       <Container>
         <div className="mb-10 text-center h-[40px] w-[400px] mx-auto inline-block mt-10 mr-6">
@@ -157,18 +161,18 @@ const Cocktail: NextPage = () => {
         </div>
         <div className="inline-block my-3">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-            <Link href="/cocktail/add">
+            <Link href="/cocktailread/add">
               <a>カクテル追加ページへ</a>
             </Link>
           </button>
-          <Link href="/cocktail/explain">
+          <Link href="/cocktailread/explain">
             <a className="ml-10 align-bottom underline my-3">サイト説明</a>
           </Link>
         </div>
 
         <div className="grid grid-cols-3 sm:block">{data}</div>
       </Container>
-    </Layout>
+    </LayoutDummy>
   );
 };
 

@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import { Layout } from "../../src/components/templates/Layout";
 import { Meta } from "../../src/components/templates/Meta";
 import { Container } from "../../src/components/atoms/Container";
 import { useState } from "react";
 import firebase from "firebase";
 import { useRouter } from "next/router";
 import "../api/fire";
+import { LayoutDummy } from "../../src/components/templates/LayoutDummy";
 
 const db = firebase.firestore();
 
@@ -61,12 +61,12 @@ const CocktailAdd: NextPage = () => {
     db.collection("mydata")
       .add(ob)
       .then((ref) => {
-        router.push("/cocktail");
+        router.push("/cockcock");
       });
   };
 
   return (
-    <Layout>
+    <LayoutDummy>
       <Meta />
       <Container>
         <div>
@@ -202,13 +202,14 @@ const CocktailAdd: NextPage = () => {
           </div>
           <button
             onClick={onClickAdd}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-gray-500  text-white font-bold py-2 px-4 rounded-full"
+            disabled
           >
             Add
           </button>
         </div>
       </Container>
-    </Layout>
+    </LayoutDummy>
   );
 };
 
