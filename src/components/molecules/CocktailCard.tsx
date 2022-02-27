@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 interface Props {
+  key: string;
   id: string;
   image: string;
   name: string;
@@ -16,7 +17,11 @@ interface Props {
 export const CocktailCard = ({ ...props }: Props) => {
   return (
     <div className="rounded-lg shadow-xl border bg-slate-50 w-[95%] mb-7 overflow-auto h-[400px] sm:h-[200px]">
-      <img src={props.image} alt="" className="w-[140px] h-auto mx-auto sm:hidden" />
+      <img
+        src={props.image}
+        alt=""
+        className="w-[140px] h-auto mx-auto sm:hidden"
+      />
       <p className="font-bold text-lg text-center mb-2">{props.name}</p>
       <dl className="flex flex-wrap">
         <dt className="w-[30%]">技法</dt>

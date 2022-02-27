@@ -21,13 +21,16 @@ const Cocktail: NextPage = () => {
 
   const onClickSearchName = () => {
     db.collection("mydata")
-      .orderBy("name").startAt(findName).endAt(findName+"\uf8ff")
+      .orderBy("name")
+      .startAt(findName)
+      .endAt(findName + "\uf8ff")
       .get()
       .then((snapshot) => {
         snapshot.forEach((document) => {
           const doc = document.data();
           mydata.push(
             <CocktailCard
+              key={doc.id}
               id={doc.id}
               image={doc.image || "/noimage.png"}
               name={doc.name}
@@ -53,6 +56,7 @@ const Cocktail: NextPage = () => {
           const doc = document.data();
           mydata.push(
             <CocktailCard
+              key={doc.id}
               id={doc.id}
               image={doc.image || "/noimage.png"}
               name={doc.name}
@@ -82,6 +86,7 @@ const Cocktail: NextPage = () => {
 
           mydata.push(
             <CocktailCard
+              key={doc.id}
               id={document.id}
               image={doc.image || "/noimage.png"}
               name={doc.name}

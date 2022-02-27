@@ -10,14 +10,13 @@ import { Container } from "../../src/components/atoms/Container";
 
 const db = firebase.firestore();
 const CocktailEdit: NextPage = () => {
-  const mydata = [];
   const [data, setData] = useState<any>({});
   const [name, setName] = useState();
   const [way, setWay] = useState("シェイク");
   const [glass, setGlass] = useState("カクテル");
-
-  const [garnish, setGarnish] = useState();
-  const [option, setOption] = useState();
+  const [material, setMaterial] = useState<Array<string>>([]);
+  const [garnish, setGarnish] = useState("なし");
+  const [option, setOption] = useState("なし");
   const router = useRouter();
 
   const onChangeName = (e: any) => {
@@ -29,7 +28,9 @@ const CocktailEdit: NextPage = () => {
   const onChangeGlass = (e: any) => {
     setGlass(e.target.value);
   };
-
+  const onChangeMaterial = (e: any) => {
+    setMaterial(e.target.value);
+  };
   const onChangeGarnish = (e: any) => {
     setGarnish(e.target.value);
   };
@@ -47,6 +48,7 @@ const CocktailEdit: NextPage = () => {
             setName(doc.name);
             setWay(doc.way);
             setGlass(doc.glass);
+            setMaterial(doc.material)
             setGarnish(doc.garnish);
             setOption(doc.option);
           }
@@ -72,7 +74,7 @@ const CocktailEdit: NextPage = () => {
           name: name,
           way: way,
           glass: glass,
-
+          material:material,
           garnish: garnish,
           option: option,
         })
@@ -154,7 +156,18 @@ const CocktailEdit: NextPage = () => {
               </div>
             </div>
           </div>
-
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              材料
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-[500px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              onChange={onChangeMaterial}
+              value={material}
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               ガーニッシュ

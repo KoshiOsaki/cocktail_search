@@ -17,8 +17,8 @@ const CocktailAdd: NextPage = () => {
   const [material, setMaterial] = useState<Array<string>>([]);
   const [mate, setMate] = useState("");
   const [qu, setQu] = useState("");
-  const [garnish, setGarnish] = useState("なし");
-  const [option, setOption] = useState("なし");
+  const [garnish, setGarnish] = useState("");
+  const [option, setOption] = useState("");
   const router = useRouter();
 
   const onChangeName = (e: any) => {
@@ -56,8 +56,8 @@ const CocktailAdd: NextPage = () => {
       way: way,
       glass: glass,
       material: material,
-      garnish: garnish,
-      option: option,
+      garnish: garnish||"なし",
+      option: option||"なし",
     };
     db.collection("mydata")
       .add(ob)
